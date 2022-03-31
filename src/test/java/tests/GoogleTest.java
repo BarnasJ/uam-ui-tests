@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
+import pageObjects.GoogleHomePage;
+import pageObjects.GoogleResultPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -75,5 +77,12 @@ public class GoogleTest {
         equalsButton.click();
 
         result.shouldHave(text("9"));
+    }
+
+    @Test
+    public void searchForUamText() {
+        new GoogleHomePage().open().acceptCookies().search("UAM");
+        new GoogleResultPage().searchForTextInElement(0, "Uniwersytet im. Adama Mickiewicza w Poznaniu - Pozna" );
+
     }
 }
